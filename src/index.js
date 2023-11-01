@@ -2,7 +2,6 @@ import axios from "axios";
 import Notiflix from 'notiflix'
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-const axios = require('axios').default;
 
 const ref = {
   form: document.querySelector('.search-form'),
@@ -10,6 +9,7 @@ const ref = {
   input: document.getElementById('search-query'),
   loadMore: document.querySelector('.load-more')
 };
+
 ref.loadMore.addEventListener('click', handlerLoadMore);
 ref.form.addEventListener('submit', handlerSearch);
 
@@ -22,7 +22,9 @@ async function handlerSearch(evt) {
   evt.preventDefault();
   if (!ref.input.value) {
     return;
-  };
+  }
+
+
   if (query === '' || query !== ref.input.value) {
       query = ref.input.value;
       page = 0;
@@ -44,7 +46,7 @@ const API_KEY = '40367315-3c91d510b26c4724b33f253c9';
     image_type: "photo",
     orientation: "horizontal",
     safesearch: true,
-    page: p,
+    page,
     per_page: 40,
   })
   try {
@@ -78,6 +80,6 @@ function creatMarcup(arr) {
 }
 
 function handlerLoadMore(evt) {
-  fetchImages(page++)
+
 
 }
